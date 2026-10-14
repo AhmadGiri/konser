@@ -65,7 +65,6 @@ class OrderController extends Controller
                     'quantity' => $quantity,
                     'subtotal' => $subtotal,
                 ]);
-                $totalPrice += $subtotal;
             }
 
             $order->update(['total_price' => $totalPrice]);

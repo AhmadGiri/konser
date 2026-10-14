@@ -77,7 +77,7 @@ class EventController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'category' => 'required|in:Musik, Festival,Seminar',
+            'category' => 'required|in:Musik,Festival,Seminar',
             'ticket_price' => 'required|numeric|min:0',
             'description' => 'required|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',

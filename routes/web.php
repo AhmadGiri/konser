@@ -18,7 +18,7 @@ Route::middleware('auth')->group(function () {
     ->name('profile.destroy');
     });
     
-    Route::get('/admin/dashboard', [OrderController::class, 'adminDashboard'])->name('admin.dashboard');
+    Route::get('/admin/dashboard', [OrderController::class, 'adminDashboard'])->middleware('auth', 'verified')->name('admin.dashboard');
     Route::resource('admin/events', EventController::class);
     Route::patch('/admin/orders/{id}/status', [OrderController::class, 'updateStatus'])->name('admin.orders.updateStatus');
 
