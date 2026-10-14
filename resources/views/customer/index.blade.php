@@ -9,8 +9,6 @@
 
 <body class="bg-gray-100 p-6 font-sans">
     <div class="max-w-5xl mx-auto">
-
-        <!-- HEADER -->
         <div class="text-center mb-6">
             <h1 class="text-3xl font-bold text-gray-800">
                 Katalog Konser & Event Musik
@@ -19,22 +17,16 @@
                 Pilih event yang kau mau, masukkan data diri, dan pesan tiketnya sekarang!
             </p>
         </div>
-
-        <!-- NOTIFIKASI SUCCESS -->
         @if(session('success'))
             <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-xl mb-6 text-center font-semibold">
                 {{ session('success') }}
             </div>
         @endif
-
-        <!-- NOTIFIKASI ERROR -->
         @if(session('error'))
             <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-xl mb-6 text-center font-semibold">
                 {{ session('error') }}
             </div>
         @endif
-
-        <!-- NOTIFIKASI VALIDASI -->
         @if($errors->any())
             <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-xl mb-6 font-semibold">
                 <ul class="list-disc list-inside">
@@ -43,9 +35,7 @@
                     @endforeach
                 </ul>
             </div>
-        @endif
-
-        <!-- FILTER KATEGORI -->
+        @endif>
         <div class="flex flex-wrap justify-center gap-3 mb-8">
             <button
                 type="button"
@@ -75,16 +65,12 @@
                 Seminar
             </button>
         </div>
-
-        <!-- FORM PEMESANAN -->
         <form
             id="orderForm"
             action="{{ route('customer.checkout') }}"
             method="POST">
 
             @csrf
-
-            <!-- 1. INFORMASI PEMESAN -->
             <div class="bg-white p-6 rounded-xl shadow-sm border mb-6">
                 <h2 class="text-lg font-bold text-gray-700 mb-4 pb-2 border-b">
                     1. Informasi Data Diri Pemesan
@@ -128,8 +114,6 @@
 
                 </div>
             </div>
-
-            <!-- 2. PILIH EVENT -->
             <h2 class="text-lg font-bold text-gray-700 mb-4">
                 2. Pilih Tiket Konser & Event
             </h2>
@@ -142,7 +126,6 @@
                         data-category="{{ $event->category }}">
 
                         <div>
-                            <!-- POSTER EVENT -->
                             @if($event->image)
                                 <img
                                     src="{{ asset('storage/' . $event->image) }}"
@@ -153,8 +136,6 @@
                                     Tanpa Poster
                                 </div>
                             @endif
-
-                            <!-- INFORMASI EVENT -->
                             <div class="p-4">
                                 <div class="flex justify-between items-center mb-2 gap-2">
 
@@ -177,8 +158,6 @@
                                 </p>
                             </div>
                         </div>
-
-                        <!-- JUMLAH TIKET -->
                         <div class="p-4 bg-gray-50 border-t">
                             <label
                                 for="event_{{ $event->id }}"
@@ -202,8 +181,6 @@
                 @endforeach
 
             </div>
-
-            <!-- TOMBOL PEMESANAN LANGSUNG -->
             <div class="mt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
 
                 <p class="text-sm text-gray-500">
@@ -221,8 +198,6 @@
         </form>
 
     </div>
-
-    <!-- JAVASCRIPT -->
     <script>
         // FILTER KATEGORI EVENT
         function filterCategory(category, element) {

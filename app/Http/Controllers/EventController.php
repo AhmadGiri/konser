@@ -8,26 +8,20 @@ use Illuminate\Support\Facades\Storage;
 
 class EventController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    //Menampilkan daftar event untuk admin
     public function index()
     {
         $events = Event::latest()->paginate(10);
         return view('admin.events.index', compact('events'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    //Menampilkan form untuk membuat event baru
     public function create()
     {
         return view('admin.events.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    //Memproses pembuatan event baru
     public function store(Request $request)
     {
         $request->validate([
@@ -62,17 +56,13 @@ class EventController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    //Menampilkan form untuk mengedit event yang sudah ada
     public function edit(Event $event)
     {
         return view('admin.events.edit', compact('event'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    //Memproses pembaruan event yang sudah ada
     public function update(Request $request, Event $event)
     {
         $request->validate([
@@ -102,9 +92,7 @@ class EventController extends Controller
         return redirect()->route('events.index')->with('success', 'Event updated successfully.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    //menghapus event yang sudah ada
     public function destroy(Event $event)
     {
         if ($event->image && Storage::disk('public')->exists($event->image)) {

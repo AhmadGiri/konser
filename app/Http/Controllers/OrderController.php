@@ -10,9 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    //Menampilkan halaman utama untuk pelanggan
     public function index()
     {
         $events = Event::latest()->paginate(10);
@@ -27,9 +25,7 @@ class OrderController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    //Memproses pesanan tiket yang dikirimkan oleh pelanggan
     public function store(Request $request)
     {
         $request->validate([
@@ -79,12 +75,14 @@ class OrderController extends Controller
 
     }
 
+    //Menampilkan halaman dashboard untuk admin
     public function adminDashboard()
     {
         $orders = Order::with('orderDetails.event')->latest()->get();
         return view('dashboard', compact('orders'));
     }
 
+    //Memperbarui status pesanan melalui dashboard admin
     public function updateStatus(Request $request, $id)
     {
         $request->validate([
